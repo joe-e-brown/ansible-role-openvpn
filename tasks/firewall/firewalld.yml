@@ -19,7 +19,7 @@
 - name: firewall | firewalld | Enable OpenVPN Port (firewalld)
   ansible.posix.firewalld:
     port: "{{ openvpn_port }}/{{ openvpn_proto }}"
-    zone: "{{ __firewalld_default_zone.stdout }}"
+    zone: "{{ openvpn_firewalld_zone | default(__firewalld_default_zone.stdout) }}"
     permanent: true
     immediate: true
     state: enabled
@@ -29,7 +29,7 @@
   # can be routed through the VPN tunnel.
   ansible.posix.firewalld:
     interface: tun0
-    zone: trusted
+    zone: '{{ openvpn_tun_zone }}'
     permanent: true
     immediate: true
     state: enabled
@@ -37,7 +37,7 @@
 - name: firewall | firewalld | Enable masquerading on default interface's zone
   ansible.posix.firewalld:
     masquerade: true
-    zone: "{{ __firewalld_default_zone.stdout }}"
+    zone: "{{ openvpn_firewalld_zone | default(__firewalld_default_zone.stdout) }}"
     permanent: true
     state: enabled
     immediate: true

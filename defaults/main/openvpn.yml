@@ -27,7 +27,8 @@ openvpn_server_ipv6_network: "fdbf:dd0d:1a49:2091::/64"
 openvpn_set_dns: true
 openvpn_tun_mtu:
 openvpn_lan_source_ip: "{{ ansible_default_ipv4.address }}"
-
+openvpn_firewalld_zone:
+openvpn_tun_zone: trusted
 # Security
 openvpn_auth_alg: SHA256
 openvpn_cipher: AES-256-GCM:AES-128-GCM:AES-256-CBC
@@ -57,6 +58,8 @@ openvpn_status_version: 1
 openvpn_config_file: "openvpn_{{ openvpn_proto }}_{{ openvpn_port }}"
 openvpn_service_name: "openvpn-server@{{ openvpn_config_file }}.service"
 openvpn_topology: subnet
+openvpn_service_enabled: true
+openvpn_service_state: started
 
 # Client config - settings the server will push
 openvpn_client_config: false

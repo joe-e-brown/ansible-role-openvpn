@@ -39,11 +39,6 @@
   tags:
     - firewall
 
-- name: Configure SELinux
-  ansible.builtin.import_tasks: selinux.yml
-  when:
-    - ansible_selinux.status == "enabled"
-
 - name: Compare existing certs against 'clients' variable
   ansible.builtin.import_tasks: cert_sync_detection.yml
   when: openvpn_sync_certs is truthy

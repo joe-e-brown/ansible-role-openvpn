@@ -7,3 +7,4 @@ openssl_package_name: openssl
 openvpn_ldap_plugin_package_name: openvpn-auth-ldap
 openvpn_package_name: openvpn
 python_firewall_package_name: python-firewall
+openvpn_selinux_package_name: selinux-policy-epel-targeted
